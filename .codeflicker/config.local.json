@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Fetch(domain:github.com)",
+      "Fetch(domain:open.kuaishou.com)"
+    ]
+  }
+}

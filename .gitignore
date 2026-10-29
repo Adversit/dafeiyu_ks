@@ -1,0 +1,16 @@
+# 依赖与运行时产物
+.venv/
+__pycache__/
+*.py[cod]
+
+# 运行时数据（登录态/数据库/日志/截图/表情包）
+data/
+
+# 编辑器
+.DS_Store
+.idea/
+.vscode/
+
+# 密钥
+.env
+*.pem
