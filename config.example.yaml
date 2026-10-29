@@ -1,7 +1,14 @@
 # ============================================================
-# 快手大肥鱼 - DeepSeek 评论区自动回复机器人 配置
-# 首次使用：先运行 `python -m app.main --login` 人工扫码登录，
-#           登录态会持久化到 browser.user_data_dir。
+# 快手大肥鱼 - DeepSeek 评论区自动回复机器人 配置【模板】
+#
+# 使用方法：复制本文件为 config.yaml，再填写你的真实值：
+#     cp config.example.yaml config.yaml
+# 或直接用 CLI 写入（推荐，保留注释）：
+#     python -m app.main --set-api-key sk-你的DeepSeekKey
+#     python -m app.main --add-photo "https://www.kuaishou.com/short-video/作品ID"
+#     python -m app.main --setup                 # 交互式补齐
+#
+# 注意：config.yaml（含真实 API Key）已被 .gitignore 排除，不要提交到 git。
 # ============================================================
 
 deepseek:
@@ -20,11 +27,9 @@ browser:
 
 creator:
   # 主源：作品前台评论区（支持文字 + emoji + 图片表情包回复）
-  # 需要登录才能评论；登录后将作品页地址放这里，每轮轮询会逐条抓取新评论
   photo_urls:
     - "https://www.kuaishou.com/short-video/REPLACE_WITH_PHOTO_ID"
   # 可选源：快手创作者中心评论管理页（集中管理文字回复，不支持图片表情包）。
-  # 若页面 DOM 结构与下方默认选择器不同，请按 README [DOM 校准指南] 调整 selectors
   creator_center_url: ""            # 留空则仅使用 photo_urls
   max_scrolls: 20                   # 单页最大滚动/翻页次数
   comment_sort: "newest"            # newest / hot（评论排序，快手段使用则忽略）

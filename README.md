@@ -41,7 +41,15 @@
 
 ## 快速开始
 
-### 1. 安装
+### 0. 一键启动（推荐）
+
+```bash
+./start.sh
+```
+
+脚本会自动：安装依赖（含 Chromium）→ 交互式补齐缺失配置（DeepSeek API Key/作品链接）→ 启动机器人（未登录会自动引导扫码登录）。
+
+### 1. 手动安装
 
 ```bash
 python3 -m venv .venv
@@ -52,18 +60,20 @@ playwright install chromium
 
 ### 2. 配置
 
-编辑 `config.yaml`：
+以下三条命令二选一/组合使用（均为文本级写入，**保留 config.yaml 全部注释**）：
 
-```yaml
-deepseek:
-  api_key: "sk-你的DeepSeekKey"      # https://platform.deepseek.com 获取
+```bash
+# 写入 DeepSeek API Key
+python -m app.main --set-api-key sk-你的DeepSeekKey
 
-creator:
-  photo_urls:
-    - "https://www.kuaishou.com/short-video/你的作品ID"   # 填写你的快手作品页地址
+# 添加要监控的作品链接（可重复执行，自动替换占位符/追加）
+python -m app.main --add-photo "https://www.kuaishou.com/short-video/你的作品ID"
+
+# 或走交互式向导，一条命令补齐所有缺失项
+python -m app.main --setup
 ```
 
-> `creator_center_url`（创作者中心评论管理页）为可选扩展：填了后需按下方"DOM 校准指南"适配该页选择器。
+> 也可以直接编辑 `config.yaml`。`creator_center_url`（创作者中心评论管理页）为可选扩展：填了后需按下方"DOM 校准指南"适配该页选择器。
 
 ### 3. 登录快手（一次性）
 
